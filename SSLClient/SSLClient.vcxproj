@@ -193,7 +193,6 @@
     <ClCompile Include="..\Common\Utilities.cpp" />
     <ClCompile Include="ActiveSock.cpp" />
     <ClCompile Include="..\Common\BaseSock.cpp" />
-    <ClCompile Include="AuthHandler.cpp" />
     <ClCompile Include="SSLClient.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

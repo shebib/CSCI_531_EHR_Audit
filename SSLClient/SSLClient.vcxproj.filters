@@ -85,8 +85,5 @@
     <ClCompile Include="..\Common\BaseSock.cpp">
       <Filter>Source Files\Common Sources</Filter>
     </ClCompile>
-    <ClCompile Include="AuthHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

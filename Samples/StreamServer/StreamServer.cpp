@@ -143,7 +143,7 @@ int _tmain(int argc, WCHAR* argv[], WCHAR* envp[])
 			MsgText[len] = '\0'; // Terminate the string, for convenience
 			cout << "Received " << MsgText << endl;
 			/* MODIFIED: Begin Audit server functionality */
-			AuthHandler authHandler{};
+			//AuthHandler authHandler{};
 
 			// At this point the client is just waiting for a message or for the connection to close
 			//cout << "Sending 'Goodbye from server' and listening for client messages" << endl;
