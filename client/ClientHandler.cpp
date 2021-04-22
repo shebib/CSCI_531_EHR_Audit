@@ -21,6 +21,11 @@ bool ClientHandler::sendMessage(CStringA& msg)
 	return true;
 }
 
+bool ClientHandler::sendMessage(const char* msg) {
+	msgOut = CStringA(msg);
+	return sendMessage(msgOut);
+}
+
 int ClientHandler::receiveMessage(char* buff)
 {
 	int len = 0;
@@ -49,16 +54,21 @@ void ClientHandler::parseInput()
 void ClientHandler::init() {
 	 msgOut = CStringA("SIG: READY");
   sendMessage(msgOut);
-  ::Sleep(2000);
+	receiveMessage(msgIn);
+	if (lastMsg.compare("SIG: READY") != 0) {
+		std::cout << "ERROR: Error initializing server. Exiting..." << std::endl;
+		return;
+	}
 	is_authorized = login();
 	while (num_auth_attempts < 3 && !is_authorized) {
 		num_auth_attempts++;
+		std::cout << "Attempting to log in again (attempt " << 
+			num_auth_attempts << "/3)" << std::endl;
     is_authorized = login();
 	}
 	if (!is_authorized) {
 		std::cout << "Login failed. Exiting..." << std::endl;
 		return;
-		//TODO exit
 	}
 	std::cout << "Login successful.";
 	handleQueries();

@@ -163,29 +163,6 @@ int _tmain(int argc, WCHAR* argv[], WCHAR* envp[])
 			if (StreamSock->GetLastError() == SEC_I_CONTEXT_EXPIRED)
 			{
 				cout << "Recv returned notification that SSL shut down" << endl;
-				// Now loop receiving any unencrypted messages until an error (probably socket shutdown) is received
-				StreamSock->SetRecvTimeoutSeconds(4);
-				while (true)
-				{
-					if ((len = StreamSock->Recv(MsgText, sizeof(MsgText) - 1)) <= 0)
-					{
-						if (len == INVALID_SOCKET && StreamSock->GetLastError() == ERROR_TIMEOUT)
-						{
-							// Just a timeout, it's ok to retry that, so just do so
-							ShowDelay();
-							cout << "Initial receive timed out, retrying" << endl;
-							if ((len = StreamSock->Recv(MsgText, sizeof(MsgText) - 1)) <= 0)
-								break;
-						}
-						else
-							break;
-					}
-					MsgText[len] = '\0'; // Terminate the string, for convenience
-					ShowDelay();
-					cout << "Received plaintext '" << MsgText << "'" << endl;
-				}
-				ShowDelay();
-				ShowResult(len, StreamSock->GetLastError());
 			}
 			else
 				ShowResult(len, StreamSock->GetLastError());
@@ -200,7 +177,7 @@ int _tmain(int argc, WCHAR* argv[], WCHAR* envp[])
 
 	PROCESS_INFORMATION pi = {};
 
-	RunClient(L"localhost", &pi); // run a client point it at "localhost"
+	//RunClient(L"localhost", &pi); // run a client point it at "localhost"
 	if (pi.hProcess && pi.hThread)
 	{
 		cout << "Waiting on StreamClient to localhost" << endl;
@@ -211,7 +188,7 @@ int _tmain(int argc, WCHAR* argv[], WCHAR* envp[])
 	}
 	// Run additional copies, do not wait, and let the hostname default
 	PROCESS_INFORMATION pi1 = {};
-	RunClient(L"", &pi1); 
+	//RunClient(L"", &pi1); 
 	//PROCESS_INFORMATION pi2 = {};
 	//RunClient(L"", &pi2);
 	//PROCESS_INFORMATION pi3 = {};

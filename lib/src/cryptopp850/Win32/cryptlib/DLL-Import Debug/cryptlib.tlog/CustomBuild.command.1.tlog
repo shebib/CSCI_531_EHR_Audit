@@ -1,0 +1,7 @@
+^C:\USERS\DANIE\SOURCE\REPOS\CSCI_531_EHR_AUDIT_STANDALONE\LIB\SRC\CRYPTOPP850\ADHOC.CPP.PROTO
+if not exist adhoc.cpp copy "C:\Users\danie\source\repos\CSCI_531_EHR_Audit_Standalone\lib\src\cryptopp850\adhoc.cpp.proto" adhoc.cpp
+        echo: >> adhoc.cpp.copied
+^C:\USERS\DANIE\SOURCE\REPOS\CSCI_531_EHR_AUDIT_STANDALONE\LIB\SRC\CRYPTOPP850\RDRAND.ASM
+ml.exe /c /nologo /D_M_X86 /W3 /Cx /Zi /safeseh /Fo"Win32\cryptlib\DLL-Import Debug\rdrand-x86.obj" "C:\Users\danie\source\repos\CSCI_531_EHR_Audit_Standalone\lib\src\cryptopp850\rdrand.asm"
+^C:\USERS\DANIE\SOURCE\REPOS\CSCI_531_EHR_AUDIT_STANDALONE\LIB\SRC\CRYPTOPP850\RDSEED.ASM
+ml.exe /c /nologo /D_M_X86 /W3 /Cx /Zi /safeseh /Fo"Win32\cryptlib\DLL-Import Debug\rdseed-x86.obj" "C:\Users\danie\source\repos\CSCI_531_EHR_Audit_Standalone\lib\src\cryptopp850\rdseed.asm"

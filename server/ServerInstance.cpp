@@ -21,6 +21,11 @@ bool ServerInstance::sendMessage(CStringA& msg)
 	return true;
 }
 
+bool ServerInstance::sendMessage(const char* msg) {
+	msgOut = CStringA(msg);
+	return sendMessage(msgOut);
+}
+
 int ServerInstance::receiveMessage(char* buff)
 {
 	int len = 0;
@@ -49,8 +54,13 @@ void ServerInstance::parseInput()
 void ServerInstance::init() {
 	msgOut = CStringA("SIG: READY");
   sendMessage(msgOut);
-  ::Sleep(2000);
+	receiveMessage(msgIn);
+	if (lastMsg.compare("SIG: READY") != 0) {
+		std::cout << "ERROR: Error initializing client. Exiting instance..." << std::endl;
+		return;
+	}
 	is_authorized = login();
+
 	while (num_auth_attempts < 3 && !is_authorized) {
 		num_auth_attempts++;
     is_authorized = login();
@@ -66,24 +76,27 @@ void ServerInstance::init() {
 
 bool ServerInstance::login() {
 	while (!is_authorized) {
-    receiveMessage(msgIn);
-		parseInput();
+		msgOut = CStringA("LOGIN: Please insert username/password "
+			"in the format [username]/[password]");
 		sendMessage(msgOut);
-    receiveMessage(msgIn);
-		if (lastMsg.compare("SIG: ACCEPTED") == 0) {
+		receiveMessage(msgIn);
+		if (lastMsg.find('/') == std::string::npos) {
+			sendMessage("SIG: INVALID");
+			continue;
+		}
+		std::string attempt_username = lastMsg.substr(0, lastMsg.find('/'));
+		std::string attempt_rawpass = lastMsg.substr(lastMsg.find('/')+1, lastMsg.length());
+		//TODO actually implement a password
+		if (attempt_username.compare("admin") == 0 &&
+			attempt_rawpass.compare("admin") == 0) {
 			is_authorized = true;
+			msgOut = CStringA("SIG: ACCEPTED");
+			sendMessage(msgOut);
 			return true;
 		}
-		else if (lastMsg.compare("SIG: REJECTED") == 0) {
-			is_authorized = false;
-			return false;
-		}
-		else if (lastMsg.compare("SIG: INVALID") == 0) {
-			is_authorized = false;
-			std::cout << "Error: invalid input" << std::endl;
-		}
 		else {
-			std::cout << "WARNING: Unexpected message from server" << std::endl;
+			sendMessage("SIG: REJECTED");
+			return false;
 		}
 	}
 	return true;

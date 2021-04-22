@@ -1073,12 +1073,6 @@
     <CustomBuild Include="rdseed.asm">
       <Filter>Source Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="x64dll.asm">
-      <Filter>Source Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="x64masm.asm">
-      <Filter>Source Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="adhoc.cpp.proto">
       <Filter>Miscellaneous</Filter>
     </CustomBuild>

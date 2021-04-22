@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SSLClient", "lib\src\Stream
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SSLServer", "lib\src\StreamSSL-2.1.3\SSLServer\SSLServer.vcxproj", "{287B68D2-7381-4E78-AC72-79A49738228D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InitDatabase", "InitDatabase\InitDatabase.vcxproj", "{C372ED21-ECD8-455B-831C-2E53DA838108}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug Ansi|x64 = Debug Ansi|x64
@@ -69,6 +71,18 @@ Global
 		{287B68D2-7381-4E78-AC72-79A49738228D}.Release|x64.Build.0 = Release|x64
 		{287B68D2-7381-4E78-AC72-79A49738228D}.Release|x86.ActiveCfg = Release|Win32
 		{287B68D2-7381-4E78-AC72-79A49738228D}.Release|x86.Build.0 = Release|Win32
+		{C372ED21-ECD8-455B-831C-2E53DA838108}.Debug Ansi|x64.ActiveCfg = Debug|x64
+		{C372ED21-ECD8-455B-831C-2E53DA838108}.Debug Ansi|x64.Build.0 = Debug|x64
+		{C372ED21-ECD8-455B-831C-2E53DA838108}.Debug Ansi|x86.ActiveCfg = Debug|Win32
+		{C372ED21-ECD8-455B-831C-2E53DA838108}.Debug Ansi|x86.Build.0 = Debug|Win32
+		{C372ED21-ECD8-455B-831C-2E53DA838108}.Debug|x64.ActiveCfg = Debug|x64
+		{C372ED21-ECD8-455B-831C-2E53DA838108}.Debug|x64.Build.0 = Debug|x64
+		{C372ED21-ECD8-455B-831C-2E53DA838108}.Debug|x86.ActiveCfg = Debug|Win32
+		{C372ED21-ECD8-455B-831C-2E53DA838108}.Debug|x86.Build.0 = Debug|Win32
+		{C372ED21-ECD8-455B-831C-2E53DA838108}.Release|x64.ActiveCfg = Release|x64
+		{C372ED21-ECD8-455B-831C-2E53DA838108}.Release|x64.Build.0 = Release|x64
+		{C372ED21-ECD8-455B-831C-2E53DA838108}.Release|x86.ActiveCfg = Release|Win32
+		{C372ED21-ECD8-455B-831C-2E53DA838108}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

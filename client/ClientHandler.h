@@ -35,6 +35,7 @@ private:
   int num_auth_attempts;
 
 	bool sendMessage(CStringA& msg);
+	bool sendMessage(const char* msg);
   int receiveMessage(char* buff);
   void parseInput();
   bool login();

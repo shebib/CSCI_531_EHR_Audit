@@ -4,6 +4,9 @@
 #include "AuditCommon.h"
 #include <functional>
 
+//Defines an instance of the audit query server
+//Notes on patient_id: 0 is invalid (not logged in),
+//UINT_MAX is an auditor with full access rights
 class ServerInstance
 {
 public:
@@ -15,6 +18,8 @@ public:
     , lastMsg{ "" }
     , is_authorized{ false }
     , num_auth_attempts{ 0 }
+    , username{ "NULL" }
+    , patient_id{ 0 }
   {}
   
   //Simple function that loops waiting for the server and responds
@@ -31,8 +36,12 @@ private:
   std::string lastMsg;
   bool is_authorized;
   int num_auth_attempts;
+  std::string username;
+  unsigned int patient_id;
+
 
 	bool sendMessage(CStringA& msg);
+	bool sendMessage(const char* msg);
   int receiveMessage(char* buff);
   void parseInput();
   bool login();
