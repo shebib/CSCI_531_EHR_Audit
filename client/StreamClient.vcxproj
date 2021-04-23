@@ -287,6 +287,7 @@
     <ClInclude Include="..\..\SSLClient\Include\EventWrapper.h" />
     <ClInclude Include="..\..\SSLClient\Include\SSLClient.h" />
     <ClInclude Include="..\common\include\AuditCommon.h" />
+    <ClInclude Include="..\common\include\CryptoInterface.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="resource.h" />
@@ -294,6 +295,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\common\CryptoInterface.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Ansi|x64'">Create</PrecompiledHeader>

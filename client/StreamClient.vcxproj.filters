@@ -60,6 +60,9 @@
     <ClInclude Include="..\common\include\AuditCommon.h">
       <Filter>Header Files\AuditCommon Headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\common\include\CryptoInterface.h">
+      <Filter>Header Files\AuditCommon Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -69,6 +72,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ClientHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\CryptoInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

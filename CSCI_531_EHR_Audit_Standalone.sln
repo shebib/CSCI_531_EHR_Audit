@@ -13,6 +13,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SSLServer", "lib\src\Stream
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InitDatabase", "InitDatabase\InitDatabase.vcxproj", "{C372ED21-ECD8-455B-831C-2E53DA838108}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4B31B63A-DE99-465E-8100-1706AD6E18EB}"
+	ProjectSection(SolutionItems) = preProject
+		PICKUP.txt = PICKUP.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug Ansi|x64 = Debug Ansi|x64
