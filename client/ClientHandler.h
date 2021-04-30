@@ -1,6 +1,6 @@
 #pragma once
-#include "SSLClient.h"
 #include "AuditCommon.h"
+#include "SSLClient.h"
 #include <functional>
 
 class ClientHandler 
@@ -14,6 +14,7 @@ public:
     , lastMsg{ "" }
     , is_authorized{ false }
     , num_auth_attempts{ 0 }
+    , recordTranscript{}
   {}
   
   //Simple function that loops waiting for the server and responds
@@ -33,6 +34,7 @@ private:
   std::string lastMsg;
   bool is_authorized;
   int num_auth_attempts;
+  std::string recordTranscript;
 
 	bool sendMessage(CStringA& msg);
 	bool sendMessage(const char* msg);
@@ -40,6 +42,7 @@ private:
   void parseInput();
   bool login();
   void handleQueries();
+  void logout();
 
 };
 

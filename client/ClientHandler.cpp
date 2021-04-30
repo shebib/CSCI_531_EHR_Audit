@@ -17,7 +17,7 @@ bool ClientHandler::sendMessage(CStringA& msg)
 		return false;
 	}
 	std::cout << "Sent '" << msg << "'" << std::endl;
-	::Sleep(2000); // Give the next message a chance to arrive at the server separately
+	//::Sleep(4000); // Give the next message a chance to arrive at the server separately
 	return true;
 }
 
@@ -100,5 +100,36 @@ bool ClientHandler::login() {
 }
 
 void ClientHandler::handleQueries() {
-	std::cout << "handleQueries() is a stub" << std::endl;
+	while (true) {
+		//pending input
+		receiveMessage(msgIn);
+		parseInput();
+		sendMessage(msgOut);
+		receiveMessage(msgIn);
+		if (lastMsg.compare("SIG: LOGOUT") == 0) {
+			std::cout << "Saving query transcript and logging out." << std::endl;
+			logout();
+		}
+		else if (lastMsg.compare("SIG: INVALID") == 0) {
+			std::cout << "Invalid input. " << std::endl;
+			continue;
+		}
+		else if (lastMsg.compare("SIG: UNAUTHORIZED") == 0) {
+			std::cout << "WARNING: Unauthorized record access." << std::endl;
+			continue;
+		}
+		else if (lastMsg.compare("SIG: NOT_AVAILABLE") == 0) {
+			std::cout << "ERROR: Patient not in record database." << std::endl;
+			continue;
+		}
+		else { //success
+			recordTranscript.append(lastMsg);
+		}
+	}
+}
+
+void ClientHandler::logout() {
+	std::cout << "RECORD TRANSCRIPT SAVED: " << std::endl;
+	std::cout << recordTranscript << std::endl;
+	std::cout << "logout() is a stub." << std::endl;
 }

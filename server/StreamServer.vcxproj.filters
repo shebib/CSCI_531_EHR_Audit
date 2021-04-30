@@ -60,11 +60,14 @@
     <ClInclude Include="AuthHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ServerFileImporter.h">
+    <ClInclude Include="ServerFileHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\common\include\CryptoInterface.h">
       <Filter>Header Files\AuditCommon Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryHandler.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -80,10 +83,16 @@
     <ClCompile Include="AuthHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ServerFileImporter.cpp">
+    <ClCompile Include="ServerFileHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\common\CryptoInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\AuditCommon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

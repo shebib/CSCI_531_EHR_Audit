@@ -17,7 +17,7 @@ bool ServerInstance::sendMessage(CStringA& msg)
 		return false;
 	}
 	std::cout << "Sent '" << msg << "'" << std::endl;
-	::Sleep(2000); // Give the next message a chance to arrive at the server separately
+	//::Sleep(4000); // Give the next message a chance to arrive at the server separately
 	return true;
 }
 
@@ -85,24 +85,90 @@ bool ServerInstance::login() {
 			continue;
 		}
 		std::string attempt_username = lastMsg.substr(0, lastMsg.find('/'));
-		std::string attempt_rawpass = lastMsg.substr(lastMsg.find('/')+1, lastMsg.length());
-		//TODO actually implement a password
-		if (attempt_username.compare("admin") == 0 &&
-			attempt_rawpass.compare("admin") == 0) {
+		std::string attempt_rawpass = lastMsg.substr(lastMsg.find('/') + 1, lastMsg.length());
+		//HKDF password
+		patient_id = auth.authorize(attempt_username, attempt_rawpass);
+
+		//auth fail
+		if (patient_id == 0) {
+			sendMessage("SIG: REJECTED");
+			return false;
+		}
+		//success
+		else {
 			is_authorized = true;
+			username = attempt_username;
+			user_id = auth.getLastUserID(); //A hack
 			msgOut = CStringA("SIG: ACCEPTED");
 			sendMessage(msgOut);
 			return true;
 		}
-		else {
-			sendMessage("SIG: REJECTED");
-			return false;
-		}
 	}
+
+	//	if (attempt_username.compare("admin") == 0 &&
+	//		attempt_rawpass.compare("admin") == 0) {
+	//		is_authorized = true;
+	//		msgOut = CStringA("SIG: ACCEPTED");
+	//		sendMessage(msgOut);
+	//		return true;
+	//	}
+	//	else {
+	//		sendMessage("SIG: REJECTED");
+	//		return false;
+	//	}
+	//}
+
 	return true;
 }
 
 void ServerInstance::handleQueries() {
-	std::cout << "handleQueries() is a stub" << std::endl;
+	std::cout << "Now handling queries for user " << user_id << endl;
+	while (true) {
+		sendMessage("Enter patient_id to query records for a patient. Enter '-1' to logout.");
+		receiveMessage(msgIn);
+		if (lastMsg == "-1") {
+			sendMessage("SIG: LOGOUT");
+			logout();
+			return;
+		}
+		unsigned int attempt_pid = 0;
+		try {
+			attempt_pid = std::stoul(lastMsg);
+		}
+		catch (std::invalid_argument e) {
+			cout << "ERROR: invalid patient id" << endl;
+			sendMessage("SIG: INVALID");
+			continue;
+		}
+		if (patient_id == UINT_MAX) {
+			if (!getRecords(attempt_pid)) {
+				sendMessage("SIG: NOT_AVAILABLE");
+				continue;
+			}
+		}
+		else if (patient_id == attempt_pid) {
+			if (!getRecords(attempt_pid)) {
+				sendMessage("SIG: NOT_AVAILABLE");
+				continue;
+			}
+		}
+		else { //auth fail
+			sendMessage("SIG: UNAUTHORIZED");
+		}
+	}
 }
 
+//Assume we are authorized by now
+bool ServerInstance::getRecords(unsigned int pid) {
+	if (!query.hasRecords(pid))
+		return false;
+	else {
+		msgOut = CStringA(query.getRecords(pid).c_str());
+		sendMessage(msgOut);
+		return true;
+	}
+}
+
+void ServerInstance::logout() {
+	cout << "logout() is a stub." << endl;
+}

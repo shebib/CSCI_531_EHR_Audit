@@ -18,9 +18,6 @@
     <ClCompile Include="InitDatabase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Driver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\common\CryptoInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

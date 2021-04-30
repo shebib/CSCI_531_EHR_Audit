@@ -116,7 +116,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\lib\src</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);..\lib</LibraryPath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);..\lib;..\lib\debug</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Ansi|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -142,7 +142,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\lib\src;..\lib\src\StreamSSL-2.1.3\SSLServer\Include;..\lib\src\StreamSSL-2.1.3\Common\Include; ..\common\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\lib\src\cryptopp850;..\lib\src;..\lib\src\StreamSSL-2.1.3\SSLServer\Include;..\lib\src\StreamSSL-2.1.3\Common\Include;..\common\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <TreatWarningAsError>true</TreatWarningAsError>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
@@ -165,7 +165,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\lib\src;..\lib\src\StreamSSL-2.1.3\SSLServer\Include;..\lib\src\StreamSSL-2.1.3\Common\Include; ..\common\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\lib\src\cryptopp850;..\lib\src;..\lib\src\StreamSSL-2.1.3\SSLServer\Include;..\lib\src\StreamSSL-2.1.3\Common\Include;..\common\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <TreatWarningAsError>true</TreatWarningAsError>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
@@ -188,7 +188,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\lib\src;..\lib\src\StreamSSL-2.1.3\SSLServer\Include;..\lib\src\StreamSSL-2.1.3\Common\Include; ..\common\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\lib\src\cryptopp850;..\lib\src;..\lib\src\StreamSSL-2.1.3\SSLServer\Include;..\lib\src\StreamSSL-2.1.3\Common\Include;..\common\include</AdditionalIncludeDirectories>
       <LanguageStandard>Default</LanguageStandard>
       <TreatWarningAsError>true</TreatWarningAsError>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
@@ -197,7 +197,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\lib;..\lib\debug</AdditionalLibraryDirectories>
     </Link>
     <ResourceCompile>
       <AdditionalIncludeDirectories>..\..\common\include</AdditionalIncludeDirectories>
@@ -212,7 +212,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\lib\src;..\lib\src\StreamSSL-2.1.3\SSLServer\Include;..\lib\src\StreamSSL-2.1.3\Common\Include; ..\common\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\lib\src\cryptopp850;..\lib\src;..\lib\src\StreamSSL-2.1.3\SSLServer\Include;..\lib\src\StreamSSL-2.1.3\Common\Include;..\common\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <TreatWarningAsError>true</TreatWarningAsError>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
@@ -237,7 +237,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\lib\src;..\lib\src\StreamSSL-2.1.3\SSLServer\Include;..\lib\src\StreamSSL-2.1.3\Common\Include; ..\common\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\lib\src\cryptopp850;..\lib\src;..\lib\src\StreamSSL-2.1.3\SSLServer\Include;..\lib\src\StreamSSL-2.1.3\Common\Include;..\common\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <TreatWarningAsError>true</TreatWarningAsError>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
@@ -264,7 +264,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\lib\src;..\lib\src\StreamSSL-2.1.3\SSLServer\Include;..\lib\src\StreamSSL-2.1.3\Common\Include; ..\common\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\lib\src\cryptopp850;..\lib\src;..\lib\src\StreamSSL-2.1.3\SSLServer\Include;..\lib\src\StreamSSL-2.1.3\Common\Include;..\common\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <TreatWarningAsError>true</TreatWarningAsError>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
@@ -291,12 +291,14 @@
     <ClInclude Include="AuthHandler.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="QueryHandler.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="ServerFileImporter.h" />
+    <ClInclude Include="ServerFileHandler.h" />
     <ClInclude Include="ServerInstance.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\common\AuditCommon.cpp" />
     <ClCompile Include="..\common\CryptoInterface.cpp" />
     <ClCompile Include="AuthHandler.cpp" />
     <ClCompile Include="pch.cpp">
@@ -307,7 +309,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="ServerFileImporter.cpp" />
+    <ClCompile Include="QueryHandler.cpp" />
+    <ClCompile Include="ServerFileHandler.cpp" />
     <ClCompile Include="ServerInstance.cpp" />
     <ClCompile Include="SSLServerWrapper.cpp" />
   </ItemGroup>

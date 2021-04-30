@@ -2,6 +2,9 @@
 
 #include "ISocketStream.h"
 #include "AuditCommon.h"
+#include "ServerFileHandler.h"
+#include "AuthHandler.h"
+#include "QueryHandler.h"
 #include <functional>
 
 //Defines an instance of the audit query server
@@ -20,16 +23,16 @@ public:
     , num_auth_attempts{ 0 }
     , username{ "NULL" }
     , patient_id{ 0 }
+    , sfh{}
+    , auth{&sfh}
+    , query{&sfh}
   {}
   
   //Simple function that loops waiting for the server and responds
   void init();
 
-
 private:
   ISocketStream* streamSock;
-  //AuthHandler auth;
-  //QueryHandler query;
   CStringA msgOut;
   char msgIn[MAX_MSG_BUFFER_SZ];
   int last_msg_len;
@@ -38,7 +41,11 @@ private:
   int num_auth_attempts;
   std::string username;
   unsigned int patient_id;
+  unsigned int user_id;
 
+  ServerFileHandler sfh;
+  AuthHandler auth;
+  QueryHandler query;
 
 	bool sendMessage(CStringA& msg);
 	bool sendMessage(const char* msg);
@@ -46,5 +53,7 @@ private:
   void parseInput();
   bool login();
   void handleQueries();
+  bool getRecords(unsigned int pid);
+  void logout();
 };
 
