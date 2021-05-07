@@ -189,10 +189,6 @@ int main(int argc, char* argv[])
     std::vector<std::pair<std::string, AuthInfo>> nowayvec =
       std::vector<std::pair<std::string, AuthInfo>>(newvec, newvec + AUTH_NUM_ELEM);
 
-    Query* newvec2 = reinterpret_cast<Query*>(queryRaw.data());
-    std::vector<Query> qVec =
-      std::vector<Query>(newvec2, newvec2 + QUERY_NUM_ELEM);
-
     cout << "TOTAL AUTH SIZE: " << authSize << endl;
     cout << "TOTAL AUTH ELEMS: " << authTokens.size() << endl;
     cout << "TOTAL QUERY SIZE: " << querySize << endl;
@@ -203,6 +199,10 @@ int main(int argc, char* argv[])
     for (Query q : queryData) {
       printQuery(q);
     }
+
+    Query* newvec2 = reinterpret_cast<Query*>(queryRaw.data());
+    std::vector<Query> qVec =
+    std::vector<Query>(newvec2, newvec2 + QUERY_NUM_ELEM);
 
     return 0;
 }

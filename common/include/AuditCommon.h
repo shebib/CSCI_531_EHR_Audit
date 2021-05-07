@@ -10,8 +10,8 @@
 static const size_t MAX_MSG_BUFFER_SZ = 16000; // Matches SSLClient max size
 static const size_t AUTH_DATA_SIZE = 2940;
 static const size_t AUTH_NUM_ELEM = 7;
-static const size_t QUERY_DATA_SIZE = 3888;
-static const size_t QUERY_NUM_ELEM = 54;
+static const size_t QUERY_DATA_SIZE = 3816;
+static const size_t QUERY_NUM_ELEM = 53;
 
 struct AuthInfo {
   unsigned int user_id;
