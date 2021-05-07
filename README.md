@@ -1,6 +1,9 @@
 # EHR Audit System
 This is a prototype cryptographically secure EHR audit system. 
 
+## Quick Start
+Load the .sln into Visual Studio. Run InitDatabase to initialize the database, then run both Client and Server projects to start an instance.
+
 ## Libraries
 # StreamSSL
 This project uses the SSL client/server implementation provided below: 
@@ -14,3 +17,5 @@ https://github.com/david-maw/StreamSSL/blob/master/License.md.
 # Crypto++
 This project uses the cryptographic primitives implemented in the crypto++ library:
 https://www.cryptopp.com/
+
+*For more information, see the Design Document*
