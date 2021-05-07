@@ -54,6 +54,7 @@ private:
   bool login();
   void handleQueries();
   bool getRecords(unsigned int pid);
+  void addRecord(Query q);
   void logout();
 };
 

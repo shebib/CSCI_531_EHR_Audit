@@ -1,5 +1,6 @@
 #pragma once
 #include "AuditCommon.h"
+#include "CryptoInterface.h"
 #include "SSLClient.h"
 #include <functional>
 
@@ -36,12 +37,13 @@ private:
   int num_auth_attempts;
   std::string recordTranscript;
 
-	bool sendMessage(CStringA& msg);
-	bool sendMessage(const char* msg);
+  bool sendMessage(CStringA& msg);
+  bool sendMessage(const char* msg);
   int receiveMessage(char* buff);
   void parseInput();
   bool login();
   void handleQueries();
+  void saveTranscript();
   void logout();
 
 };

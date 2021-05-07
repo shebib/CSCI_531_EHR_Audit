@@ -21,6 +21,9 @@
     <ClCompile Include="..\common\CryptoInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\common\AuditCommon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common\include\CryptoInterface.h">

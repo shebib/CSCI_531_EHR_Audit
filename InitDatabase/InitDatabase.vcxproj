@@ -161,6 +161,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\common\AuditCommon.cpp" />
     <ClCompile Include="..\common\CryptoInterface.cpp" />
     <ClCompile Include="InitDatabase.cpp" />
   </ItemGroup>

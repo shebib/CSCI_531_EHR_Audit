@@ -8,7 +8,7 @@ bool AuthHandler::readAuthData() {
   std::pair <string, AuthInfo>* newvec = reinterpret_cast<std::pair<string, AuthInfo>*>(rawAuthData.data());
   authData = std::vector<std::pair<string, AuthInfo>>(newvec, newvec+AUTH_NUM_ELEM);
 
-  cout << authData.at(0).first << "/" << authData.at(0).second.patient_id << endl;
+  //cout << authData.at(0).first << "/" << authData.at(0).second.patient_id << endl;
   return true;
 }
 

@@ -145,8 +145,13 @@ int _tmain(int argc, WCHAR* argv[], WCHAR* envp[])
 			cout << "Received " << MsgText << endl;
 			cout << "Client connection established." << endl;
 			/* MODIFIED: Begin Audit server functionality */
-			auto si = make_unique<ServerInstance>(StreamSock);
-			si->init();
+			try {
+				auto si = make_unique<ServerInstance>(StreamSock);
+				si->init();
+			}
+			catch (exception e) {
+				std::cout << "Shutting Down server unexpectedly..." << std::endl;
+			}
 			//AuthHandler authHandler{};
 
 			// At this point the client is just waiting for a message or for the connection to close

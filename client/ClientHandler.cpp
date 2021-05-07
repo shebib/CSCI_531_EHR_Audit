@@ -128,8 +128,53 @@ void ClientHandler::handleQueries() {
 	}
 }
 
-void ClientHandler::logout() {
+void ClientHandler::saveTranscript() {
+	std::cout << "Saving record transcript..." << std::endl;
+
+	SecByteBlock transcript(reinterpret_cast<const byte*>(&recordTranscript[0]), recordTranscript.size());
+	SecByteBlock key(AES::DEFAULT_KEYLENGTH);
+	SecByteBlock iv(AES::BLOCKSIZE);
+
+	key = CryptoInterface::generateAESKey();
+	iv = CryptoInterface::generateAESIV();
+
+	CryptoInterface::saveRaw(key, "./data/clientKey.bin");
+	CryptoInterface::saveRaw(iv, "./data/clientIV.bin");
+
+	CryptoInterface::encryptAndSave(transcript, key, iv, "./data/records_encrypted.bin");
+
 	std::cout << "RECORD TRANSCRIPT SAVED: " << std::endl;
 	std::cout << recordTranscript << std::endl;
-	std::cout << "logout() is a stub." << std::endl;
+
+	std::cout << "re-decrypting transcript for demo purposes..." << std::endl;
+	SecByteBlock keyO(AES::DEFAULT_KEYLENGTH);
+	SecByteBlock ivO(AES::BLOCKSIZE);
+	SecByteBlock transcriptO(recordTranscript.size());
+
+	try {
+      FileSource sKey("./data/clientKey.bin", true,
+        new ArraySink(keyO, keyO.size())
+    );
+      sKey.PumpAll();
+
+      FileSource sIV("./data/clientIV.bin", true,
+      new ArraySink(ivO, ivO.size())
+    );
+    sIV.PumpAll();
+	CryptoInterface::readAndDecrypt("./data/records_encrypted.bin", keyO, ivO, transcriptO);
+	std::string transcriptRead(reinterpret_cast<const char*>(&transcriptO[0]), transcriptO.size());
+	cout << "Read from file: " << endl;
+	cout << transcriptRead << endl;
+  }
+	catch (const CryptoPP::Exception& e)
+	{
+		cout << "ERROR: ServerFileHandler.init(): File I/O exception" << endl;
+		cout << e.what() << endl;
+	}
+
+}
+
+void ClientHandler::logout() {
+	saveTranscript();
+	std::cout << "Logout complete." << std::endl;
 }

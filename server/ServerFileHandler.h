@@ -13,6 +13,7 @@ public:
   void init();
   SecByteBlock readAuthData();
   SecByteBlock readQueryData();
+  void setQueryData(SecByteBlock& data);
   void writeAllData();
 
   //We'll access this later (a mess)

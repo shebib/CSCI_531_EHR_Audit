@@ -52,5 +52,9 @@ void ServerFileHandler::writeAllData() {
   serverFileIV = CryptoInterface::generateAESIV();
   CryptoInterface::encryptAndSave(queryData, serverFileKey, serverFileIV, ServerFileHandler::QUERY_FILENAME);
   CryptoInterface::encryptAndSave(authData, serverFileKey, serverFileIV, ServerFileHandler::AUTH_FILENAME);
+  CryptoInterface::saveRaw(serverFileIV, ServerFileHandler::IV_FILENAME);
 }
 
+void ServerFileHandler::setQueryData(SecByteBlock& data) {
+    queryData = data;
+}

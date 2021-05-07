@@ -169,6 +169,38 @@ bool ServerInstance::getRecords(unsigned int pid) {
 	}
 }
 
+void ServerInstance::addRecord(Query q) {
+	query.addRecord(q);
+}
+
 void ServerInstance::logout() {
-	cout << "logout() is a stub." << endl;
+	cout << "Adding new query to log for demo purposes. This will persist the next time the server is run" << endl;
+
+	auto GetTimeAndDate = []()
+	{
+	  unsigned int now_seconds = (unsigned int)time(NULL);
+	  unsigned int rand_seconds = (rand() * rand()) % (10);
+	  time_t       rand_time = (time_t)(now_seconds - rand_seconds);
+	  return localtime(&rand_time);
+	};
+
+	Query q;
+	q.patient_id = 9090;
+	q.time = *GetTimeAndDate();
+	q.user_id = 909090;
+	q.type = "QUERY";
+
+	addRecord(q);
+	std::vector<Query> queryData = query.getAll();
+
+	size_t querySize = sizeof(queryData[0]) * queryData.size();
+    CryptoPP::byte* queryPointer = reinterpret_cast<CryptoPP::byte*>(queryData.data());
+    SecByteBlock queryRaw(queryPointer, querySize);
+
+	cout << "Audit log increased by " << sizeof(queryData[0]) << " bytes." << endl;
+
+	sfh.setQueryData(queryRaw); //set data for writing
+	sfh.writeAllData(); //Write all with new IV
+
+	cout << "User " << username << " logged out." << endl;
 }

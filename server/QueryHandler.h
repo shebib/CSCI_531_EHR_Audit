@@ -18,6 +18,8 @@ public:
   //return 0 if authorization fails for any reason
   bool hasRecords(unsigned int patient_id);
   string getRecords(unsigned int patient_id);
+  bool addRecord(Query q);
+  std::vector<Query>& getAll();
 
 private:
   ServerFileHandler* sfh;

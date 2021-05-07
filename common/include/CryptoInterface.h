@@ -40,6 +40,9 @@ using CryptoPP::GCM;
 #include "secblock.h"
 using CryptoPP::SecByteBlock;
 
+#include "sha.h"
+using CryptoPP::SHA256;
+
 
 //A class with only static methods to abstract the cryptoPP methods used for this project
 //May be edited later to add state if necessary 
@@ -53,5 +56,6 @@ public:
   static SecByteBlock generateAESIV();
   static SecByteBlock deriveHKDF(const std::string& password, const SecByteBlock& salt);
   static void dumpSecBlock(const SecByteBlock& info);
+  static void chainSHA(SecByteBlock& prevSHA, const SecByteBlock& nextInfo);
 
 };

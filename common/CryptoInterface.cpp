@@ -93,6 +93,7 @@ bool CryptoInterface::readAndDecrypt(const std::string filename, const SecByteBl
 	{
 		cout << "ERROR: readAndDecrypt: File I/O exception" << endl;
 		cout << e.what() << endl;
+		cout << "Authentication failed, database may have been tampered with!" << endl;
 		throw e;
 	}
 	return false;
@@ -134,4 +135,12 @@ void CryptoInterface::dumpSecBlock(const SecByteBlock& info) {
 	string s;
 	ArraySource as(info, info.size(), true, new HexEncoder(new StringSink(s)));
 	cout << s << endl;
+}
+
+void CryptoInterface::chainSHA(SecByteBlock& prevSHA, const SecByteBlock& nextInfo) {
+	SHA256 hash;
+	prevSHA += nextInfo;
+	hash.Update(prevSHA.data(), prevSHA.size());
+	prevSHA.resize(hash.DigestSize());
+	hash.Final(prevSHA);
 }
